@@ -2,11 +2,10 @@
 
 import React, { useEffect, useRef, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF, Edges } from "@react-three/drei";
 import { OrbitControls as ThreeOrbitControls } from "three-stdlib";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
-useGLTF.preload("/tennis_ball/ball.glb");
 
 function TennisBallModel({ url, ...props }: { url: string } & React.ComponentProps<"group">) {
   const { scene } = useGLTF(url);
@@ -168,7 +167,9 @@ export default function TennisBall({
           zIndex: 10,
         }}
       >
-        <Canvas camera={{ position: [0, 0, 7] }}>
+        <Canvas
+          camera={{ position: [0, 0, 7] }}
+        >
           <ambientLight intensity={2} />
           <directionalLight position={[10, 5, 5]} intensity={1.5} />
           <OrbitControls
@@ -182,14 +183,21 @@ export default function TennisBall({
             autoRotateSpeed={0.5}
             minPolarAngle={Math.PI / 2}
             maxPolarAngle={Math.PI / 2}
-            rotateSpeed={1}
+            rotateSpeed={0.3}
             onChange={handleControlsChange}
           />
-          <Suspense fallback={null}>
-            <TennisBallModel url="./tennis_ball/ball.glb" />
+          <Suspense
+            fallback={
+              <mesh position={new THREE.Vector3(0, 0, 0)} scale={0.4}>
+                <sphereGeometry args={[8, 32, 32]} />
+                <meshStandardMaterial wireframe roughness={0.7} metalness={0.2} color="#FFFF00" />
+              </mesh>
+            }
+          >
+            <TennisBallModel url="/tennis_ball/ball.glb" />
           </Suspense>
         </Canvas>
       </div>
-    </div>
+    </div >
   );
 }

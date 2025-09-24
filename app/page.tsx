@@ -1,7 +1,6 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode-toggle";
-import TennisBallNav from "@/components/ball";
 import { useState, useEffect } from "react";
 import Seit1977 from "@/components/seit1977";
 import LogoSpinnerLoader from "@/components/logo_spinner";
@@ -12,6 +11,7 @@ import Socials from "@/components/socials";
 import NextGen from "@/components/next-gen";
 import WFragen from "@/components/w-fragen";
 import PlatzUndDu from "@/components/platz-und-du";
+import TennisBallNav from "@/components/ball";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -20,12 +20,12 @@ export default function Home() {
   const [showBallNav, setShowBallNav] = useState(true);
   const [inAnimationPhase, setInAnimationPhase] = useState(true);
 
+  useEffect(() => setMounted(true), []);
+
   const sectionTitles = [
     "clubhaus.", "aktuelles.", "socials.",
     "seit 1977.", "nextGen.", "du+platz.", "w fragen."
   ];
-
-  useEffect(() => setMounted(true), []);
 
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
@@ -50,27 +50,31 @@ export default function Home() {
   }, [activeSection]);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
     const onScroll = () => {
-      const currentScrollY = Math.max(0, window.scrollY);
+      const currentScrollTop = Math.max(
+        document.documentElement.scrollTop,
+        document.body.scrollTop,
+        0
+      );
 
-      if (currentScrollY < lastScrollY) {
+      if (currentScrollTop < lastScrollTop) {
         setShowBallNav(true);
-      } else if (currentScrollY > lastScrollY) {
+      } else if (currentScrollTop > lastScrollTop) {
         setShowBallNav(false);
       }
 
-      lastScrollY = currentScrollY;
+      lastScrollTop = currentScrollTop;
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-
-
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   if (showSpinner) {
     return (
@@ -83,14 +87,38 @@ export default function Home() {
         }}
         className={isDark ? "dark" : ""}
       >
-        <LogoSpinnerLoader logoUrl="/tus_logo.png" />
-        <div style={{ visibility: "hidden", height: 0 }}>
-          <TennisBallNav
-            activeSection={activeSection}
-            setActiveSection={setActiveSection}
-            sectionTitles={sectionTitles}
-          />
+        <div
+          style={{
+            position: "absolute",
+            top: "5%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            minWidth: "340px",
+            width: "60vw",
+            maxWidth: "700px",
+            background: isDark
+              ? "rgba(24,24,27,0.65)"
+              : "rgba(255,255,255,0.65)",
+            color: isDark ? "#fff" : "#18181b",
+            padding: "1.2rem 2rem",
+            borderRadius: "1.2rem",
+            boxShadow: isDark
+              ? "0 4px 32px rgba(0,0,0,0.18)"
+              : "0 4px 32px rgba(0,0,0,0.08)",
+            fontSize: "1.08rem",
+            fontWeight: 500,
+            zIndex: 100,
+            textAlign: "center",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            border: isDark
+              ? "1px solid rgba(255,255,255,0.08)"
+              : "1px solid rgba(24,24,27,0.08)",
+          }}
+        >
+          Der Ball könnte gleich etwas Spin vertragen.
         </div>
+        <LogoSpinnerLoader logoUrl="/tus_logo.png" />
       </div>
     );
   }
