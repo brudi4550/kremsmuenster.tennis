@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Edges } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { OrbitControls as ThreeOrbitControls } from "three-stdlib";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
@@ -56,12 +56,28 @@ export default function TennisBall({
     lastAngleRef.current = angle;
 
     if (accumulatedRef.current >= Math.PI / 1.5) {
+      // Temporarily disable controls to prevent pointer issues during section change
+      if (controlsRef.current) {
+        controlsRef.current.enabled = false;
+        setTimeout(() => {
+          if (controlsRef.current) controlsRef.current.enabled = true;
+        }, 50);
+      }
+      
       setActiveSection((activeSection + 1) % sectionTitles.length);
       accumulatedRef.current = 0;
       setSnap(true);
     }
 
     if (accumulatedRef.current <= -Math.PI / 1.5) {
+      // Temporarily disable controls to prevent pointer issues during section change
+      if (controlsRef.current) {
+        controlsRef.current.enabled = false;
+        setTimeout(() => {
+          if (controlsRef.current) controlsRef.current.enabled = true;
+        }, 50);
+      }
+      
       setActiveSection((activeSection - 1 + sectionTitles.length) % sectionTitles.length);
       accumulatedRef.current = 0;
       setSnap(true);

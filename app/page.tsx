@@ -3,7 +3,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { useState, useEffect } from "react";
 import Seit1977 from "@/components/seit1977";
-import LogoSpinnerLoader from "@/components/logo_spinner";
+import LogoSpinnerLoader from "@/components/animation_spinner";
 import { useTheme } from "next-themes";
 import Clubhaus from "@/components/clubhaus";
 import Planmaesig from "@/components/planmaesig";
@@ -12,6 +12,7 @@ import NextGen from "@/components/next-gen";
 import WFragen from "@/components/w-fragen";
 import PlatzUndDu from "@/components/platz-und-du";
 import TennisBallNav from "@/components/ball";
+import AnimationSpinner from "@/components/animation_spinner";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -84,41 +85,13 @@ export default function Home() {
           minHeight: "100vh",
           background: ballBg,
           transition: "background 0.3s",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
         className={isDark ? "dark" : ""}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: "5%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            minWidth: "340px",
-            width: "60vw",
-            maxWidth: "700px",
-            background: isDark
-              ? "rgba(24,24,27,0.65)"
-              : "rgba(255,255,255,0.65)",
-            color: isDark ? "#fff" : "#18181b",
-            padding: "1.2rem 2rem",
-            borderRadius: "1.2rem",
-            boxShadow: isDark
-              ? "0 4px 32px rgba(0,0,0,0.18)"
-              : "0 4px 32px rgba(0,0,0,0.08)",
-            fontSize: "1.08rem",
-            fontWeight: 500,
-            zIndex: 100,
-            textAlign: "center",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            border: isDark
-              ? "1px solid rgba(255,255,255,0.08)"
-              : "1px solid rgba(24,24,27,0.08)",
-          }}
-        >
-          Der Ball könnte gleich etwas Spin vertragen.
-        </div>
-        <LogoSpinnerLoader logoUrl="/tus_logo.png" />
+        <AnimationSpinner />
       </div>
     );
   }
