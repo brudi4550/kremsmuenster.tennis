@@ -2,7 +2,6 @@ import Image from "next/image";
 import { GeistSans } from "geist/font/sans";
 import Title from "./title";
 import { useEffect, useState, useRef } from "react";
-import Marquee from "react-fast-marquee";
 
 export default function Seit1977({ animate = false }: { animate?: boolean }) {
     const imageSrcs = [
@@ -18,15 +17,6 @@ export default function Seit1977({ animate = false }: { animate?: boolean }) {
     if (imageRefs.current.length !== imageSrcs.length) {
         imageRefs.current = Array(imageSrcs.length).fill(null);
     }
-
-    const sponsors = [
-        "/sponsors/Logo_Schunk.png",
-        "/sponsors/Logo_Schunk.png",
-        "/sponsors/Logo_Schunk.png",
-        "/sponsors/Logo_Schunk.png",
-        "/sponsors/Logo_Schunk.png",
-        "/sponsors/Logo_Schunk.png",
-    ];
 
     useEffect(() => {
         function onScroll() {
@@ -94,36 +84,12 @@ export default function Seit1977({ animate = false }: { animate?: boolean }) {
                 <p className="mt-3">
                     Alles was Tennis mit sich bringt. Und das kompakt auf 6 Plätzen + Clubhaus in 4550 Kremsmünster.
                 </p>
+                <p className="mt-3">
+                    Plätze können bei uns im <a href="www.kremsmuenster.tenniskalender.at" target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline text-blue-600 hover:text-blue-800">Tenniskalender</a> reserviert werden!
+                </p>
                 <br />
-            </div>
-
-            {/* Mobile: Sponsor Marquee */}
-            <div 
-                className="lg:hidden my-8"
-                style={{
-                    transition: "opacity 0.7s, transform 0.7s",
-                    opacity: animate ? 0 : 1,
-                    transform: animate ? "translateY(48px)" : "translateY(0)"
-                }}
-            >
-                <Marquee speed={40} gradient={false}>
-                    {sponsors.map((src, index) => (
-                        <div
-                            key={`sponsor-${index}`}
-                            className="w-20 h-20 relative mx-6"
-                            style={{
-                                filter: "grayscale(100%)",
-                            }}
-                        >
-                            <Image
-                                src={src}
-                                alt={`Sponsor ${index + 1}`}
-                                fill
-                                style={{ objectFit: "contain" }}
-                            />
-                        </div>
-                    ))}
-                </Marquee>
             </div>
 
             {imageSrcs.map((src, i) => (

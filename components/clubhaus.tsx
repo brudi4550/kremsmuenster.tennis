@@ -1,8 +1,18 @@
 import { GeistSans } from "geist/font/sans";
 import Title from "./title";
 import Image from "next/image";
+import Timeline from "./timeline";
 
 export default function Clubhaus() {
+    const timelineItems = [
+        { year: "1977", title: "Gründung Tennisverein" },
+        { year: "1977-1984", title: "Tennisplätze angemietet bei Stadlhuber und Schloss Kremsegg" },
+        { year: "1984", title: "Bau und Eröffnung Plätze 1-4" },
+        { year: "1985-1986", title: "Bau Clubhaus" },
+        { year: "1987", title: "Clubhaus Eröffnung" },
+        { year: "1992", title: "Bau Plätze 5 + 6" },
+    ];
+
     return (
         <div
             className={`${GeistSans.className} max-w-3xl mx-auto px-4`}
@@ -36,8 +46,9 @@ export default function Clubhaus() {
                     priority
                     style={{ objectFit: "cover", borderRadius: "1rem" }}
                 />
+                <Timeline items={timelineItems} />
                 <Image
-                    className="mt-3"
+                    className="mt-8"
                     src="/clubhaus2.jpg"
                     alt="Clubhaus"
                     width={800}

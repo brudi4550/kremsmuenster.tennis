@@ -2,6 +2,54 @@ import { GeistSans } from "geist/font/sans";
 import Title from "./title";
 
 export default function WFragen() {
+    const accounts = [
+        {
+            position: "Obmann",
+            name: "Benjamin Ing",
+            email: "obmann@kremsmuenster.tennis",
+        },
+        {
+            position: "Obmannstellvertreter",
+            name: "Gerrit Müllner",
+            email: "obmann.stv@kremsmuenster.tennis",
+        },
+        {
+            position: "Jugendwart",
+            name: "Peter Schöngruber",
+            email: "jugend@kremsmuenster.tennis",
+        },
+        {
+            position: "Sportwart",
+            name: "Simon Mitterbauer",
+            email: "sportwart@kremsmuenster.tennis",
+        },
+        {
+            position: "Kassier",
+            name: "Dietmar Schernhammer",
+            email: "kassier@kremsmuenster.tennis",
+        },
+        {
+            position: "Platzwart",
+            name: "Gerhard Müllner",
+            email: "platzwart@kremsmuenster.tennis",
+        },
+        {
+            position: "Social Media",
+            name: "Fiona Gruber",
+            email: "social@kremsmuenster.tennis",
+        },
+        {
+            position: "Schriftführerin",
+            name: "Zoe Kim Hem",
+            email: "schriftfuehrerin@kremsmuenster.tennis",
+        },
+        {
+            position: "IT",
+            name: "Alexander Wolf",
+            email: "admin@kremsmuenster.tennis",
+        },
+    ];
+
     return (
         <div
             className={`${GeistSans.className} max-w-3xl mx-auto px-4`}
@@ -18,7 +66,7 @@ export default function WFragen() {
                     <strong>Wann?</strong> Jetzt.
                 </p>
                 <p className="mt-3">
-                    <strong>Wer?</strong> 7 engagierte Menschen.
+                    <strong>Wer?</strong> 9 engagierte Menschen.
                 </p>
                 <p className="mt-3">
                     <strong>Wo?</strong> TuS Tennisanlage, Gablonzerstraße 15, 4550 Kremsmünster
@@ -48,28 +96,16 @@ export default function WFragen() {
                         />
                     </svg>
                 </div>
-
-                <p className="mt-3">
-                    <strong>Obmann?</strong> Benjamin Ing
-                </p>
-                <p className="mt-3">
-                    <strong>Obmannstellvertreter?</strong> Gerrit Müllner
-                </p>
-                <p className="mt-3">
-                    <strong>Kassier?</strong> Wolfgang Schnabl
-                </p>
-                <p className="mt-3">
-                    <strong>Jugendwart?</strong> Peter Schöngruber
-                </p>
-                <p className="mt-3">
-                    <strong>Schriftführerin?</strong> Zoe Kim Hem
-                </p>
-                <p className="mt-3">
-                    <strong>Social Media?</strong> Fiona Gruber
-                </p>
-                <p className="mt-3">
-                    <strong>IT?</strong> Alexander Wolf
-                </p>
+                {accounts.map((account) => (
+                    <div key={account.email} className="mt-3">
+                        <p className="mt-3 flex items-baseline gap-4">
+                            <strong>{account.position}?</strong>
+                            <a href={`mailto:${account.email}`} className="ml-auto text-right underline underline-offset-4">
+                                {account.name}
+                            </a>
+                        </p>
+                    </div>
+                ))}
                 <div
                     style={{
                         width: "100%",
