@@ -98,12 +98,12 @@ export default function WFragen() {
                 </div>
                 {accounts.map((account) => (
                     <div key={account.email} className="mt-3">
-                        <p className="mt-3 flex items-baseline gap-4">
-                            <strong>{account.position}?</strong>
-                            <a href={`mailto:${account.email}`} className="ml-auto text-right underline underline-offset-4">
+                        <div className="mt-3 sm:flex sm:items-baseline sm:gap-4">
+                            <strong className="block">{account.position}?</strong>
+                            <a href={`mailto:${account.email}`} className="block underline underline-offset-4 sm:ml-auto sm:text-right">
                                 {account.name}
                             </a>
-                        </p>
+                        </div>
                     </div>
                 ))}
                 <div
