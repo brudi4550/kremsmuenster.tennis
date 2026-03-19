@@ -20,9 +20,17 @@ export default function AnimationSpinner(): JSX.Element {
             cx="240"
             cy="120"
             r="66"
-            fill="#FFFF33"
+            fill="#FFFF00"
             stroke="#FFF"
             strokeWidth="4"
+          />
+          <circle
+            cx="240"
+            cy="120"
+            r="69"
+            fill="none"
+            stroke="#FFFF00"
+            strokeWidth="3"
           />
 
           {/* Tennis ball seam - creates sideways spinning effect */}
@@ -35,20 +43,7 @@ export default function AnimationSpinner(): JSX.Element {
               strokeWidth="7"
               strokeLinecap="round"
               opacity="1"
-            >
-              <animate
-                attributeName="d"
-                values="M 192 78 Q 222 120 192 162;M 180 90 Q 240 120 180 150;M 192 78 Q 222 120 192 162"
-                dur="2.2s"
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="1;0.3;1"
-                dur="2.2s"
-                repeatCount="indefinite"
-              />
-            </path>
+            />
 
             {/* Right seam curve */}
             <path
@@ -58,20 +53,7 @@ export default function AnimationSpinner(): JSX.Element {
               strokeWidth="7"
               strokeLinecap="round"
               opacity="1"
-            >
-              <animate
-                attributeName="d"
-                values="M 288 78 Q 258 120 288 162;M 300 90 Q 240 120 300 150;M 288 78 Q 258 120 288 162"
-                dur="2.2s"
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="1;0.3;1"
-                dur="2.2s"
-                repeatCount="indefinite"
-              />
-            </path>
+            />
 
 
           </g>

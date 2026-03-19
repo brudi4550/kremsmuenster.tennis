@@ -34,14 +34,14 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSpinner(false);
-    }, 3500);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setInAnimationPhase(false);
-    }, 3700);
+    }, 2200);
     return () => clearTimeout(timer);
   }, []);
 
