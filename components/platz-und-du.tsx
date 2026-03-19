@@ -4,7 +4,7 @@ import Title from "./title";
 export default function PlatzUndDu() {
     return (
         <div
-            className={`${GeistSans.className} max-w-3xl mx-auto px-4`}
+            className={`${GeistSans.className} max-w-4xl mx-auto px-4`}
             style={{
                 marginTop: 0,
                 paddingTop: 30,
@@ -21,39 +21,49 @@ export default function PlatzUndDu() {
                         <thead>
                             <tr>
                                 <th>Beitrag</th>
-                                <th>Preis</th>
+                                <th>Preis €</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Hauptmitglied</td>
-                                <td>€&nbsp;140,00</td>
+                                <td>150</td>
                             </tr>
                             <tr>
-                                <td>Lebensgefährt*in / Ehepartner*in</td>
-                                <td>€&nbsp;70,00</td>
+                                <td>Lebensgefährte/Ehepartner</td>
+                                <td>80</td>
                             </tr>
                             <tr>
-                                <td>Familycard <sup>*</sup></td>
-                                <td>€&nbsp;240,00</td>
+                                <td>Familycard<sup>*</sup></td>
+                                <td>250</td>
                             </tr>
                             <tr>
-                                <td>Student*in</td>
-                                <td>€&nbsp;60,00</td>
+                                <td>Student/Lehrling bis 27 Jahre</td>
+                                <td>80</td>
                             </tr>
                             <tr>
                                 <td>Kinder/Jugend</td>
-                                <td>€&nbsp;35,00</td>
+                                <td>35</td>
                             </tr>
                             <tr>
-                                <td>unterstützendes Mitglied</td>
-                                <td>€&nbsp;25,00</td>
+                                <td>Unterstützendes Mitglied</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>Zweitmitglied<sup>**</sup></td>
+                                <td>80</td>
                             </tr>
                         </tbody>
                     </table>
                     <br />
                     <p className="note" style={{ textAlign: "left" }}>
-                        <strong>* Familycard:</strong> 2 Erwachsene (Ehepartner oder Lebensgemeinschaft) und alle Kinder (bis 18&nbsp;J.) im Familienverbund
+                        <strong>* Familycard:</strong> Beinhaltet 2 Erwachsene und alle Kinder bis zur Vollendung des 18. Lebensjahres.
+                        <br />
+                        <strong>** Zweitmitglied:</strong> Erfordert einen Nachweis der Hauptmitgliedschaft (Zahlungsbestätigung).
+                    </p>
+                    <br />
+                    <p className="note" style={{ textAlign: "left" }}>
+                        Für alle Infos rund um An- und Abmeldung beim Tennisverein bitte eine Mail an <a href="mailto:team@kremsmuenster.tennis" className="underline underline-offset-4">team@kremsmuenster.tennis</a>.
                     </p>
                 </section>
 
@@ -63,13 +73,13 @@ export default function PlatzUndDu() {
                         <thead>
                             <tr>
                                 <th>Leistung</th>
-                                <th>Preis</th>
+                                <th>Preis €</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Gaststunde</td>
-                                <td>€&nbsp;20,00 pro Platz</td>
+                                <td>18</td>
                             </tr>
                         </tbody>
                     </table>

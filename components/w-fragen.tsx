@@ -34,6 +34,11 @@ export default function WFragen() {
             email: "platzwart@kremsmuenster.tennis",
         },
         {
+            position: "Eventmanagement",
+            name: "Wilhelmine Ahrens",
+            email: "eventmanagment@kremsmuenster.tennis",
+        },
+        {
             position: "Social Media",
             name: "Fiona Gruber",
             email: "social@kremsmuenster.tennis",
@@ -66,10 +71,13 @@ export default function WFragen() {
                     <strong>Wann?</strong> Jetzt.
                 </p>
                 <p className="mt-3">
-                    <strong>Wer?</strong> 9 engagierte Menschen.
+                    <strong>Wer?</strong> 10 engagierte Menschen.
                 </p>
                 <p className="mt-3">
                     <strong>Wo?</strong> TuS Tennisanlage, Gablonzerstraße 15, 4550 Kremsmünster
+                </p>
+                <p className="mt-3">
+                    <strong>Wie?</strong> <a href="mailto:team@kremsmuenster.tennis" className="underline underline-offset-4">team@kremsmuenster.tennis</a>
                 </p>
                 <div
                     style={{

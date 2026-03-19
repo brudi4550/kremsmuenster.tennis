@@ -39,13 +39,13 @@ export default function AnimationSpinner(): JSX.Element {
               <animate
                 attributeName="d"
                 values="M 192 78 Q 222 120 192 162;M 180 90 Q 240 120 180 150;M 192 78 Q 222 120 192 162"
-                dur="3s"
+                dur="2.2s"
                 repeatCount="indefinite"
               />
               <animate
                 attributeName="opacity"
                 values="1;0.3;1"
-                dur="3s"
+                dur="2.2s"
                 repeatCount="indefinite"
               />
             </path>
@@ -62,13 +62,13 @@ export default function AnimationSpinner(): JSX.Element {
               <animate
                 attributeName="d"
                 values="M 288 78 Q 258 120 288 162;M 300 90 Q 240 120 300 150;M 288 78 Q 258 120 288 162"
-                dur="3s"
+                dur="2.2s"
                 repeatCount="indefinite"
               />
               <animate
                 attributeName="opacity"
                 values="1;0.3;1"
-                dur="3s"
+                dur="2.2s"
                 repeatCount="indefinite"
               />
             </path>
@@ -102,7 +102,7 @@ export default function AnimationSpinner(): JSX.Element {
           <animate
             attributeName="opacity"
             values="0;0;1;1;0;0"
-            dur="3s"
+            dur="2.2s"
             repeatCount="indefinite"
           />
         </g>
@@ -120,7 +120,7 @@ export default function AnimationSpinner(): JSX.Element {
               attributeName="transform"
               type="translate"
               values="384 107;168 107;384 107"
-              dur="3s"
+              dur="2.2s"
               repeatCount="indefinite"
             />
           </path>
@@ -135,19 +135,19 @@ export default function AnimationSpinner(): JSX.Element {
               attributeName="transform"
               type="translate"
               values="384 107;168 107;384 107"
-              dur="3s"
+              dur="2.2s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="opacity"
               values="0;0;0.7;0;0;0"
-              dur="3s"
+              dur="2.2s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="r"
               values="8;8;19;8;8;8"
-              dur="3s"
+              dur="2.2s"
               repeatCount="indefinite"
             />
           </circle>

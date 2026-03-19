@@ -85,7 +85,7 @@ export default function Seit1977({ animate = false }: { animate?: boolean }) {
                     Alles was Tennis mit sich bringt. Und das kompakt auf 6 Plätzen + Clubhaus in 4550 Kremsmünster.
                 </p>
                 <p className="mt-3">
-                    Plätze können bei uns im <a href="www.kremsmuenster.tenniskalender.at" target="_blank"
+                    Plätze können bei uns im <a href="https://kremsmuenster.tenniskalender.at" target="_blank"
                         rel="noopener noreferrer"
                         className="underline text-blue-600 hover:text-blue-800">Tenniskalender</a> reserviert werden!
                 </p>

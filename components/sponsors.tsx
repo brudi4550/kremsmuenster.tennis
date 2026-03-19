@@ -21,6 +21,11 @@ export default function Sponsors() {
                         </p>
                     </section>
                 ))}
+                <section className="text-center">
+                    <p className="text-3xl leading-tight">
+                        Wenn Sie uns sponsern möchten, kontaktieren Sie bitte: <a href="mailto:kassier@kremsmuenster.tennis" className="underline underline-offset-4">kassier@kremsmuenster.tennis</a>
+                    </p>
+                </section>
             </div>
         </div>
     );
