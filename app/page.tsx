@@ -12,7 +12,7 @@ import WFragen from "@/components/w-fragen";
 import PlatzUndDu from "@/components/platz-und-du";
 import TennisBallNav from "@/components/ball";
 import AnimationSpinner from "@/components/animation_spinner";
-import SideSponsors from "@/components/side-sponsors";
+import SideWaves from "@/components/side-waves";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -112,7 +112,7 @@ export default function Home() {
         <ModeToggle />
       </div>
 
-      <SideSponsors />
+      <SideWaves />
 
       {activeSection === 0 && <Sponsors />}
       {activeSection === 1 && <Clubhaus />}
