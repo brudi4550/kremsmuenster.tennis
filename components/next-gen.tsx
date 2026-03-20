@@ -75,7 +75,7 @@ export default function NextGen() {
                     Peter Schöngruber
                 </p>
                 <p className="mt-3">
-                    0677 616 29 005 | jugend@kremsmuenster.tennis
+                    0677 616 29 005 | <a href="mailto:jugend@kremsmuenster.tennis" className="underline underline-offset-4">jugend@kremsmuenster.tennis</a>
                 </p>
                 <p className="mt-3">
                     Daniel Kurzmann

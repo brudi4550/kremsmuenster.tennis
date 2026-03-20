@@ -119,4 +119,11 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  @media (max-width: 640px) {
+    a[href^="mailto:"] {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+  }
 }
