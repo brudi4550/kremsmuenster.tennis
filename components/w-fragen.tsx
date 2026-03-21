@@ -142,6 +142,40 @@ export default function WFragen() {
                 <p className="mt-3">
                     Diese Website verwendet keine Cookies und sammelt keine personenbezogenen Daten.
                 </p>
+                <div
+                    style={{
+                        width: "100%",
+                        height: "24px",
+                        background: "none",
+                        margin: "32px 0",
+                        overflow: "hidden",
+                    }}
+                    aria-hidden="true"
+                >
+                    <svg
+                        viewBox="0 0 400 24"
+                        width="100%"
+                        height="24"
+                        preserveAspectRatio="none"
+                        style={{ display: "block" }}
+                    >
+                        <path
+                            d="M0 12 Q20 0 40 12 Q60 24 80 12 Q100 0 120 12 Q140 24 160 12 Q180 0 200 12 Q220 24 240 12 Q260 0 280 12 Q300 24 320 12 Q340 0 360 12 Q380 24 400 12"
+                            stroke="#ccc"
+                            strokeWidth="2"
+                            fill="none"
+                        />
+                    </svg>
+                </div>
+                <p className="mt-3">
+                    Turn- und Sportverein Kremsmünster
+                    <br />
+                    ZVR-Nr. 348158960
+                    <br />
+                    Rathausplatz 6
+                    <br />
+                    4550 Kremsmünster
+                </p>
             </div>
         </div>
     );

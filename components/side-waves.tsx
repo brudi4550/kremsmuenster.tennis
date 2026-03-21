@@ -71,7 +71,7 @@ const SideWave = ({ mirrored = false }: { mirrored?: boolean }) => (
   >
     <path
       d={wavePath}
-      stroke="#000"
+      className="stroke-black dark:stroke-white"
       strokeWidth={2.25}
       fill="none"
     />
