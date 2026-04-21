@@ -53,13 +53,23 @@ export default function PlatzUndDu() {
                                 <td>Zweitmitglied<sup>**</sup></td>
                                 <td>80</td>
                             </tr>
+                            <tr>
+                                <td>VIP<sup>***</sup></td>
+                                <td>400</td>
+                            </tr>
                         </tbody>
                     </table>
                     <br />
                     <p className="note" style={{ textAlign: "left" }}>
                         <strong>* Familycard:</strong> Beinhaltet 2 Erwachsene und alle Kinder bis zur Vollendung des 18. Lebensjahres.
                         <br />
-                        <strong>** Zweitmitglied:</strong> Erfordert einen Nachweis der Hauptmitgliedschaft (Zahlungsbestätigung).
+                        <strong>** Zweitmitglied:</strong> Gültig für Personen mit einer Hauptmitgliedschaft in einem anderen Verein und ohne Hauptwohnsitz in Kremsmünster.
+                        <br />
+                        <strong>*** VIP:</strong> Mitgliedschaft für Firmen.
+                    </p>
+                    <br />
+                    <p className="note" style={{ textAlign: "left" }}>
+                        Der Vereinsbeitritt ist direkt über <a href="https://formular.vereinsplaner.com/0db494c8-b20f-49b9-8175-fec6043bd6fc" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">dieses Formular</a> möglich.
                     </p>
                     <br />
                     <p className="note" style={{ textAlign: "left" }}>
