@@ -137,7 +137,9 @@ export default function TennisBall({
 
   // Handle touch drag angle changes from swipe navigation
   useEffect(() => {
-    if (touchAngle === null) {
+    const currentTouchAngle = touchAngle ?? null;
+
+    if (currentTouchAngle === null) {
       // Touch ended - check if we need to change section based on accumulated angle
       if (!ignoreInputRef.current) {
         if (accumulatedRef.current >= Math.PI / 1.5) {
@@ -175,7 +177,7 @@ export default function TennisBall({
       }
       
       // Apply the touch angle delta to the base angle
-      const newAngle = baseAngleRef.current + touchAngle;
+      const newAngle = baseAngleRef.current + currentTouchAngle;
       
       // Calculate delta for accumulation (same logic as handleControlsChange)
       if (lastAngleRef.current !== null) {
@@ -188,7 +190,7 @@ export default function TennisBall({
       lastAngleRef.current = newAngle;
       controlsRef.current.setAzimuthalAngle(newAngle);
     }
-  }, [touchAngle, activeSection, sectionTitles]);
+  }, [touchAngle, activeSection, sectionTitles, setActiveSection]);
 
   const sectionWidth = 170;
   const containerWidth = sectionWidth * sectionTitles.length;
