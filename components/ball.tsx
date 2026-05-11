@@ -26,17 +26,23 @@ export default function TennisBall({
   activeSection,
   setActiveSection,
   sectionTitles,
+  touchAngle,
 }: {
   activeSection: number;
   setActiveSection: (idx: number) => void;
   sectionTitles: string[];
+  touchAngle?: number | null;
 }) {
   const controlsRef = useRef<ThreeOrbitControls>(null);
   const lastAngleRef = useRef<number | null>(null);
   const accumulatedRef = useRef<number>(0);
   const ignoreInputRef = useRef<boolean>(false);
   const [snap, setSnap] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [animatingLetters, setAnimatingLetters] = useState(0);
+  const prevSectionRef = useRef<number>(activeSection);
   const { resolvedTheme } = useTheme();
+  const baseAngleRef = useRef<number>(0);
 
   const handleControlsChange = () => {
     if (!controlsRef.current || ignoreInputRef.current) return;
@@ -92,6 +98,98 @@ export default function TennisBall({
     }
   }, [snap]);
 
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Trigger letter animation on section change (mobile only)
+  useEffect(() => {
+    if (!isMobile || activeSection === prevSectionRef.current) return;
+
+    const maxLetters = Math.max(
+      sectionTitles[activeSection].length,
+      sectionTitles[prevSectionRef.current].length
+    );
+
+    setAnimatingLetters(0);
+
+    // Animate each letter one by one
+    let letterIndex = 0;
+    const interval = setInterval(() => {
+      letterIndex++;
+      setAnimatingLetters(letterIndex);
+
+      if (letterIndex >= maxLetters) {
+        clearInterval(interval);
+        prevSectionRef.current = activeSection;
+      }
+    }, 100); // 40ms between each letter
+
+    return () => clearInterval(interval);
+  }, [activeSection, isMobile, sectionTitles]);
+
+  // Handle touch drag angle changes from swipe navigation
+  useEffect(() => {
+    if (touchAngle === null) {
+      // Touch ended - check if we need to change section based on accumulated angle
+      if (!ignoreInputRef.current) {
+        if (accumulatedRef.current >= Math.PI / 1.5) {
+          if (controlsRef.current) {
+            controlsRef.current.enabled = false;
+            setTimeout(() => {
+              if (controlsRef.current) controlsRef.current.enabled = true;
+            }, 50);
+          }
+          setActiveSection((activeSection + 1) % sectionTitles.length);
+          setSnap(true);
+        } else if (accumulatedRef.current <= -Math.PI / 1.5) {
+          if (controlsRef.current) {
+            controlsRef.current.enabled = false;
+            setTimeout(() => {
+              if (controlsRef.current) controlsRef.current.enabled = true;
+            }, 50);
+          }
+          setActiveSection((activeSection - 1 + sectionTitles.length) % sectionTitles.length);
+          setSnap(true);
+        }
+      }
+      accumulatedRef.current = 0;
+      baseAngleRef.current = 0;
+      lastAngleRef.current = null;
+      return;
+    }
+
+    // Touch is active - apply the angle to the ball
+    if (controlsRef.current && !ignoreInputRef.current) {
+      if (baseAngleRef.current === 0 && lastAngleRef.current === null) {
+        // First touch - store current angle as base
+        baseAngleRef.current = controlsRef.current.getAzimuthalAngle();
+        lastAngleRef.current = baseAngleRef.current;
+      }
+      
+      // Apply the touch angle delta to the base angle
+      const newAngle = baseAngleRef.current + touchAngle;
+      
+      // Calculate delta for accumulation (same logic as handleControlsChange)
+      if (lastAngleRef.current !== null) {
+        let delta = newAngle - lastAngleRef.current;
+        if (delta > Math.PI) delta -= 2 * Math.PI;
+        if (delta < -Math.PI) delta += 2 * Math.PI;
+        accumulatedRef.current += delta;
+      }
+      
+      lastAngleRef.current = newAngle;
+      controlsRef.current.setAzimuthalAngle(newAngle);
+    }
+  }, [touchAngle, activeSection, sectionTitles]);
+
   const sectionWidth = 170;
   const containerWidth = sectionWidth * sectionTitles.length;
 
@@ -121,56 +219,168 @@ export default function TennisBall({
     ? "0 2px 8px rgba(0,0,0,0.32)"
     : "0 2px 8px rgba(0,0,0,0.12)";
 
-  return (
-    <div>
-      {/* Band of sections above the ball */}
-      <div
-        style={{
-          position: "fixed",
-          left: 0,
-          bottom: "14vh",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 20,
-          pointerEvents: "none",
-          height: "40px",
-          overflow: "hidden",
-        }}
-      >
-        <div
+  // Render animated section title with letter transitions
+  const renderAnimatedTitle = () => {
+    const currentTitle = sectionTitles[activeSection];
+    const previousTitle = sectionTitles[prevSectionRef.current];
+    const maxLength = Math.max(currentTitle.length, previousTitle.length);
+
+    const letters = [];
+    for (let i = 0; i < maxLength; i++) {
+      const showNew = i < animatingLetters;
+      const char = showNew ? currentTitle[i] : previousTitle[i];
+      const isTransitioning = i === animatingLetters - 1;
+
+      letters.push(
+        <span
+          key={i}
           style={{
-            display: "flex",
-            transition: snap
-              ? "transform 0.3s cubic-bezier(.68,-0.55,.27,1.55)"
-              : "transform 0.3s",
-            transform: `translateX(${bandOffset})`,
+            display: "inline-block",
+            opacity: char ? 1 : 0,
+            transform: isTransitioning ? "scale(0.8)" : "scale(1)",
+            transition: isTransitioning
+              ? "transform 0.1s ease-out, opacity 0.1s ease-out"
+              : "none",
           }}
         >
-          {sectionTitles.map((title, idx) => (
-            <span
-              key={title}
-              onClick={() => handleSectionClick(idx)}
-              style={{
-                fontSize: "2rem",
-                fontWeight: idx === activeSection ? "bold" : "normal",
-                color: idx === activeSection ? activeColor : inactiveColor,
-                opacity: idx === activeSection ? 1 : 0.6,
-                textShadow: idx === activeSection ? textShadow : "none",
-                transition: "all 0.2s",
-                width: `${sectionWidth}px`,
-                textAlign: "center",
-                pointerEvents: "auto", // allow clicking
-                userSelect: "none",
-                cursor: "pointer",
-              }}
-            >
-              {title}
-            </span>
-          ))}
+          {char || ""}
+        </span>
+      );
+    }
+    return letters;
+  };
+
+  return (
+    <div>
+      {isMobile ? (
+        // Mobile: Arrow navigation with current section name
+        <div
+          style={{
+            position: "fixed",
+            left: 0,
+            bottom: "14vh",
+            width: "100vw",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 20,
+            pointerEvents: "auto",
+            height: "40px",
+            gap: "20px",
+          }}
+        >
+          {/* Left arrow */}
+          <button
+            onClick={() => handleSectionClick((activeSection - 1 + sectionTitles.length) % sectionTitles.length)}
+            style={{
+              background: "none",
+              border: "none",
+              fontSize: "2rem",
+              color: activeColor,
+              cursor: "pointer",
+              padding: "0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "40px",
+              height: "40px",
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.6")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            ←
+          </button>
+
+          {/* Current section name in middle */}
+          <span
+            style={{
+              fontSize: "2rem",
+              fontWeight: "bold",
+              color: activeColor,
+              textShadow: textShadow,
+              userSelect: "none",
+              whiteSpace: "nowrap",
+              minWidth: "150px",
+              textAlign: "center",
+            }}
+          >
+            {renderAnimatedTitle()}
+          </span>
+
+          {/* Right arrow */}
+          <button
+            onClick={() => handleSectionClick((activeSection + 1) % sectionTitles.length)}
+            style={{
+              background: "none",
+              border: "none",
+              fontSize: "2rem",
+              color: activeColor,
+              cursor: "pointer",
+              padding: "0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "40px",
+              height: "40px",
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.6")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            →
+          </button>
         </div>
-      </div>
+      ) : (
+        // Desktop/Tablet: Original band with all section names
+        <div
+          style={{
+            position: "fixed",
+            left: 0,
+            bottom: "14vh",
+            width: "100vw",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 20,
+            pointerEvents: "none",
+            height: "40px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              transition: snap
+                ? "transform 0.3s cubic-bezier(.68,-0.55,.27,1.55)"
+                : "transform 0.3s",
+              transform: `translateX(${bandOffset})`,
+            }}
+          >
+            {sectionTitles.map((title, idx) => (
+              <span
+                key={title}
+                onClick={() => handleSectionClick(idx)}
+                style={{
+                  fontSize: "2rem",
+                  fontWeight: idx === activeSection ? "bold" : "normal",
+                  color: idx === activeSection ? activeColor : inactiveColor,
+                  opacity: idx === activeSection ? 1 : 0.6,
+                  textShadow: idx === activeSection ? textShadow : "none",
+                  transition: "all 0.2s",
+                  width: `${sectionWidth}px`,
+                  textAlign: "center",
+                  pointerEvents: "auto",
+                  userSelect: "none",
+                  cursor: "pointer",
+                }}
+              >
+                {title}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Ball at the bottom */}
       <div

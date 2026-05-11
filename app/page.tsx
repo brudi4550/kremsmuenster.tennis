@@ -13,6 +13,7 @@ import PlatzUndDu from "@/components/platz-und-du";
 import TennisBallNav from "@/components/ball";
 import AnimationSpinner from "@/components/animation_spinner";
 import SideWaves from "@/components/side-waves";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -20,13 +21,19 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState(3);
   const [showBallNav, setShowBallNav] = useState(true);
   const [inAnimationPhase, setInAnimationPhase] = useState(true);
-
-  useEffect(() => setMounted(true), []);
+  const [touchAngle, setTouchAngle] = useState<number | null>(null);
 
   const sectionTitles = [
     "sponsoren.", "clubhaus.", "socials.",
     "seit 1977.", "nextGen.", "du+platz.", "w fragen."
   ];
+
+  useEffect(() => setMounted(true), []);
+
+  // Add swipe navigation for mobile - track continuous drag angle
+  useSwipeNavigation((angle: number) => {
+    setTouchAngle(angle);
+  });
 
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
@@ -179,6 +186,7 @@ export default function Home() {
           activeSection={activeSection}
           setActiveSection={setActiveSection}
           sectionTitles={sectionTitles}
+          touchAngle={touchAngle}
         />
       </div>
     </div>
