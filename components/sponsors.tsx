@@ -51,7 +51,7 @@ const sponsorTiers: {
       { name: "Lechenauer Maschinen- u. Gerätebau", logo: "/sponsors/lechenauer.jpg", link: "https://www.lechenauer.at/" },
       { name: "Walter Gruber Bauelemente Ges.m.b.H", link: "https://www.wgfenster.at/kontakt", logo: "/sponsors/wgfenster.png" },
       { name: "Thomas Blaha - Schuhmode Peterseil", logo: "/sponsors/schuhmode-peterseil.jpg", link: "https://www.schuhmode-peterseil.at/" },
-      { name: "Porsche Inter Auto GmbH & Co KG", link: "https://www.porscheinterauto.at/", logo: "/sponsors/pia.svg" },
+      { name: "Porsche Inter Auto GmbH & Co KG", link: "https://www.porscheinterauto.at/", logo: "/sponsors/pia.png" },
       { name: "Schlair Karl Bäckerei-Konditorei", logo: "/sponsors/schlair.png", link: "https://www.schlair.at/" },
       { name: "Söllradls NaturKostLaden", logo: "/sponsors/naturkostladen.png", link: "https://www.bio-soellradl.at/" },
       { name: "Mst. Daniel Zach", logo: "/sponsors/dach-zach.png", link: "https://www.dach-zach.at/" },
@@ -100,11 +100,11 @@ export default function Sponsors() {
       <div className="space-y-10">
         {sponsorTiers.map(({ tier, sponsors }) => (
           <section key={tier} className="text-center">
-            <h2 className="text-6xl font-semibold leading-tight">{tier}</h2>
+            <h2 className="font-black break-words" style={{ fontSize: "4rem", letterSpacing: "-0.06em", lineHeight: 1.05, margin: 0 }}>{tier}</h2>
             {sponsors.length === 0 ? (
               <p className="mt-4 text-2xl font-bold uppercase tracking-wide text-muted-foreground">To Be Announced!</p>
             ) : (
-              <div className="mt-5 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-5 grid grid-cols-2 gap-16 sm:grid-cols-2 lg:grid-cols-3">
                 {sponsors.map((sponsor) => {
                   const sponsorContent = (
                     <>

@@ -1,6 +1,5 @@
 "use client";
 
-import { ModeToggle } from "@/components/mode-toggle";
 import { useState, useEffect } from "react";
 import Seit1977 from "@/components/seit1977";
 import { useTheme } from "next-themes";
@@ -115,10 +114,6 @@ export default function Home() {
       }}
       className={isDark ? "dark" : ""}
     >
-      <div className="fixed top-4 right-4 z-50">
-        <ModeToggle />
-      </div>
-
       <SideWaves />
 
       {activeSection === 0 && <Sponsors />}
