@@ -21,6 +21,7 @@ export default function Home() {
   const [showBallNav, setShowBallNav] = useState(true);
   const [inAnimationPhase, setInAnimationPhase] = useState(true);
   const [touchAngle, setTouchAngle] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const sectionTitles = [
     "sponsoren.", "clubhaus.", "socials.",
@@ -29,10 +30,18 @@ export default function Home() {
 
   useEffect(() => setMounted(true), []);
 
-  // Add swipe navigation for mobile - track continuous drag angle
-  useSwipeNavigation((angle: number) => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isTouchDevice =
+      (window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches) ||
+      /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+    setIsMobile(Boolean(isTouchDevice));
+  }, []);
+
+  // Add swipe navigation on non-mobile only - track continuous drag angle
+  useSwipeNavigation((angle: number | null) => {
     setTouchAngle(angle);
-  });
+  }, !isMobile);
 
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";

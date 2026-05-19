@@ -404,6 +404,9 @@ export default function TennisBall({
             ref={controlsRef}
             enableZoom={false}
             enablePan={false}
+            // Disable interactive controls on mobile to avoid swipe/scroll conflicts
+            //enabled={!isMobile}
+            //enableRotate={!isMobile}
             target={[0, 0, 0]}
             enableDamping
             dampingFactor={0.1}

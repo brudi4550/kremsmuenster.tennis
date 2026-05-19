@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 
 export function useSwipeNavigation(
-  onAngleChange: (angle: number) => void
+  onAngleChange: (angle: number | null) => void,
+  enabled = true
 ) {
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const accumulatedAngleRef = useRef<number>(0);
 
   useEffect(() => {
+    if (!enabled) return;
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
       const x = e.touches[0].clientX;
@@ -43,5 +45,5 @@ export function useSwipeNavigation(
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [onAngleChange]);
+  }, [onAngleChange, enabled]);
 }
