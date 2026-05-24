@@ -24,7 +24,7 @@ const sponsorTiers: {
       { name: "BB PV und Solar Montagen GmbH", link: "https://www.pv-beiskammer.at/", logo: "/sponsors/bb_pv.jpg" },
       { name: "EASY-BOX GMBH", logo: "/sponsors/easy-box.svg", link: "https://easy-box.at/?lang=de" },
       { name: "Profiputz I. GmbH", link: "https://www.profiputz.eu/", logo: "/sponsors/profiputz.jpg" },
-      { name: "Postl Gastro GmbH", link: "https://www.mcdaniels.rocks/" },
+      { name: "Postl Gastro GmbH", link: "https://www.mcdaniels.rocks/", logo: "/sponsors/mcdaniels.jpg" },
       { name: "MCW Optics - Michael Wögerer", link: "https://www.mcw-optics.at/", logo: "/sponsors/mcw-optics.png" },
       { name: "Zielke Marco - Oberösterreichische Versicherung", logo: "/sponsors/oöv.jpg", link: "https://www.ooev.at/" },
     ],
@@ -104,7 +104,7 @@ export default function Sponsors() {
             {sponsors.length === 0 ? (
               <p className="mt-4 text-2xl font-bold uppercase tracking-wide text-muted-foreground">To Be Announced!</p>
             ) : (
-              <div className="mt-5 grid grid-cols-2 gap-16 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-5 grid grid-cols-2 gap-x-10 gap-y-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-0">
                 {sponsors.map((sponsor) => {
                   const sponsorContent = (
                     <>
