@@ -76,7 +76,7 @@ const sponsorTiers: {
       { name: "Anita Wolf e.U. - La Toscana", logo: "/sponsors/latoscana.jpg", link: "https://www.latoscana.at/" },
       { name: "Fritz Lachmayr GmbH", logo: "/sponsors/lachmayr.png", link: "https://www.kuehlanlagenbau.at/" },
       { name: "MÖHA Handels Ges.mbH", link: "https://www.moeha.at/", logo: "/sponsors/moeha.png" },
-      { name: "Alexander Schöllhuber GmbH", link: "https://www.a-schoellhuber.at/", logo: "/sponsors/schoellhuber.webp" },
+      { name: "Alexander Schöllhuber GmbH", link: "https://www.a-schoellhuber.at/", logo: "/sponsors/schoellhuber.jpg" },
       { name: "Elektro Kremsmair GmbH", logo: "/sponsors/elektro-kremsmair.png", link: "https://kremsmair.com/" },
       { name: "Reifenland Kremsmünster GmbH", logo: "/sponsors/reifenland.jpg", link: "https://reifenland-krm.at/" },
     ],
@@ -84,7 +84,7 @@ const sponsorTiers: {
   {
     tier: "Bronze",
     sponsors: [
-      { name: "Eggendorfer Roland Maler", link: "mailto:roland.eggendorfer@aon.at" },
+      { name: "Eggendorfer Roland Maler", link: "mailto:roland.eggendorfer@aon.at", logo: "/sponsors/eggendorfer.jpg" },
       { name: "Scheuchenstuhl Tischlerei", logo: "/sponsors/scheuchenstuhl.jpg", link: "https://www.scheuchenstuhl.at/" },
     ],
   },

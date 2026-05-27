@@ -89,7 +89,7 @@ export default function PlatzUndDu() {
                         <tbody>
                             <tr>
                                 <td>Gaststunde</td>
-                                <td>18</td>
+                                <td>16</td>
                             </tr>
                         </tbody>
                     </table>
