@@ -45,7 +45,7 @@ const sponsorTiers: {
   {
     tier: "Gold",
     sponsors: [
-      { name: "Hohenthanner Emil Ges.m.b.H.", link: "https://www.hohenthanner.at/" },
+      { name: "Hohenthanner Emil Ges.m.b.H.", link: "https://www.hohenthanner.at/", logo: "/sponsors/hohenthanner.png" },
       { name: "Hotel Gasthof König GmbH", link: "https://www.gasthof-koenig.at/", logo: "/sponsors/koenig.jpg" },
       { name: "Gruber Michael - Steinmetzmeister", link: "https://www.gruber-stein.at/", logo: "/sponsors/gruber.png" },
       { name: "Lechenauer Maschinen- u. Gerätebau", logo: "/sponsors/lechenauer.jpg", link: "https://www.lechenauer.at/" },
