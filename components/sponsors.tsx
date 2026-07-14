@@ -27,6 +27,7 @@ const sponsorTiers: {
       { name: "Postl Gastro GmbH", link: "https://www.mcdaniels.rocks/", logo: "/sponsors/mcdaniels.jpg" },
       { name: "MCW Optics - Michael Wögerer", link: "https://www.mcw-optics.at/", logo: "/sponsors/mcw-optics.png" },
       { name: "Zielke Marco - Oberösterreichische Versicherung", logo: "/sponsors/oöv.jpg", link: "https://www.ooev.at/" },
+      { name: "Swietelsky", logo: "/sponsors/swietelsky.png", link: "https://www.swietelsky.at/" },
     ],
   },
   {
@@ -68,6 +69,7 @@ const sponsorTiers: {
       { name: "Aurora GmbH", logo: "/sponsors/aurora.png", link: "https://www.auroragmbh.at/" },
       { name: "Agromed Austria GmbH", logo: "/sponsors/agromed.png", link: "https://www.agromed.at/" },
       { name: "LUDWIG LEUCHTEN J.u.M.", logo: "/sponsors/ludwig_leuchten.jpg", link: "https://www.ludwig-leuchten.at/" },
+      { name: "Staudinger Bau", logo: "/sponsors/staudinger_bau.jpg", link: "https://baumarkt-staudinger.at/" },
     ],
   },
   {
@@ -90,6 +92,25 @@ const sponsorTiers: {
   },
 ];
 
+const TierWaveSeparator = () => (
+  <div className="mt-2 mb-6 flex justify-center">
+    <svg
+      viewBox="0 0 320 28"
+      className="h-6 w-80"
+      aria-hidden="true"
+    >
+      <path
+        d="M0 14C20 14 20 5 40 5s20 9 40 9 20-9 40-9 20 9 40 9 20-9 40-9 20 9 40 9 20-9 40-9 20 9 40 9"
+        fill="none"
+        stroke="#000000"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </div>
+);
+
 export default function Sponsors() {
   return (
     <div className={`${GeistSans.className} mx-auto max-w-3xl bg-transparent px-4`} style={{ marginTop: 0, paddingTop: 30 }}>
@@ -98,9 +119,10 @@ export default function Sponsors() {
       </div>
 
       <div className="space-y-10">
-        {sponsorTiers.map(({ tier, sponsors }) => (
+        {sponsorTiers.map(({ tier, sponsors }, index) => (
           <section key={tier} className="text-center">
             <h2 className="font-black break-words" style={{ fontSize: "4rem", letterSpacing: "-0.06em", lineHeight: 1.05, margin: 0 }}>{tier}</h2>
+            <TierWaveSeparator />
             {sponsors.length === 0 ? (
               <p className="mt-4 text-2xl font-bold uppercase tracking-wide text-muted-foreground">To Be Announced!</p>
             ) : (
