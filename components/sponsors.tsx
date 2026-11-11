@@ -70,7 +70,7 @@ const sponsorTiers: {
       { name: "Agromed Austria GmbH", logo: "/sponsors/agromed.png", link: "https://www.agromed.at/" },
       { name: "LUDWIG LEUCHTEN J.u.M.", logo: "/sponsors/ludwig_leuchten.jpg", link: "https://www.ludwig-leuchten.at/" },
       { name: "Staudinger Bau", logo: "/sponsors/staudinger_bau.jpg", link: "https://baumarkt-staudinger.at/" },
-      { name: "Schmidberger", logo: "/sponsors/schmidberger.svg", link: "https://www.schmidberger.co.at/" },
+      { name: "Schmidberger", logo: "/sponsors/schmidberger.jpg", link: "https://www.schmidberger.co.at/" },
     ],
   },
   {
